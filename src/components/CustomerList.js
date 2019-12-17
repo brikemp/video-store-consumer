@@ -3,13 +3,13 @@ import axios from 'axios'
 import './CustomerList.css';
 import Customer from './Customer'
 
-class Customers extends Component {
+class CustomerList extends Component {
   constructor() {
     super();
     
     this.state = {
       customerList: [],
-    };
+    }
   }
 
   componentDidMount() { 
@@ -40,4 +40,4 @@ class Customers extends Component {
 }
 }
 
-export default Customers;
+export default CustomerList;

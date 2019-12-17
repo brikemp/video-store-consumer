@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Search from './components/Search'
+import SearchBar from './components/SearchBar'
 import CustomerList from './components/CustomerList'
 import Library from './components/Library'
 import {
@@ -45,7 +45,7 @@ class App extends Component {
           </nav>
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/search" component={Search} />
+            <Route path="/search" component={SearchBar} />
             <Route path="/library" component={Library} />
             <Route path="/customers" component={CustomerList} />
           </Switch>
