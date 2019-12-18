@@ -32,8 +32,7 @@ class SearchBar extends Component {
     event.preventDefault();
 
     console.log("This is working 1");
-    // axios.get('http://localhost:3000/movies/', { params: { query: this.state.title } } )
-    // console.log(`http://localhost:3000/movies?query=${this.state.title}`)
+
     axios.get(`http://localhost:3000/movies?query=${this.state.title}`)
       .then((response) => {
         const queryResults = response.data.map(movie => {
@@ -46,11 +45,32 @@ class SearchBar extends Component {
       })
   };
 
+
+  addMovie = (id) => {
+    const movie = movieList.find((id) => {
+      return movie.id === movieId;
+    });
+    axios.post("http://localhost:3000/movies/", {
+      key: movie.id,
+      title: movie.title,
+      overview: movie.overview,
+      release_date: movie.release_date,
+      image_url: movie.image_url,
+      external_id: movie.external_id,
+      inventory: Math.floor((Math.random() * 100) + 1)
+    })
+    .then((response) => {
+      console.log("success")
+    })
+  }
+
   makeMovies = () => {
     return this.state.queryResults.map((movie) => {
       return (<Movie
-        key={movie.id}
-        title={movie.title} />)
+        key={movie.external_id}
+        id={movie.external_id}
+        title={movie.title} 
+        addMovieCallback={this.addMovie}/>)
     })
   }
 
@@ -72,10 +92,11 @@ class SearchBar extends Component {
           </div>
           <button type="submit">Search</button>
         </form>
+
           <div>
             {this.makeMovies()}
-            {/* {this.state.error}
-            {this.state.title} */}
+            
+        
           </div>
       </div>
     );

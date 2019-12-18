@@ -51,7 +51,7 @@ onSelectMovie = (movieId) => {
 }
 
 onSelectCustomer = (customerId) => {
-  axios.get("http://localhost:3000/customer") 
+  axios.get("http://localhost:3000/customers") 
     .then((response)=>{
     let count = 1
     const customerList = response.data.map((customer) => {
@@ -86,15 +86,16 @@ onSelectCustomer = (customerId) => {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/search" component={SearchBar} />
-            <Route path="/library" component={Library} 
-              />
-            <Route path="/customers" component={CustomerList} />
+            <Route path="/library" 
+              render={(props) => <Library {...props} selectMovieCallback={this.onSelectMovie}/> } />
+
+            <Route path="/customers" 
+              render={(props) => <CustomerList {...props} selectCustomerCallback={this.onSelectCustomer} />} />
           </Switch>
         </div>
         
       </Router>
-      <Library selectMovieCallback={this.onSelectMovie} />
-      <CustomerList selectCustomerCallback={this.onSelectCustomer} />
+
       </div>
     );
   }

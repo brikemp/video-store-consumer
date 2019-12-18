@@ -29,6 +29,7 @@ class CustomerList extends Component {
   getCustomers = () => {
     return this.state.customerList.map((customer) => {
       return (<Customer 
+        key={customer.id}
         id={customer.id}
         name={customer.name}
         selectCustomerCallback={this.props.selectCustomerCallback}
@@ -46,7 +47,7 @@ class CustomerList extends Component {
 }
 
 CustomerList.propTypes = {
-  selectCustomerCallback: PropTypes.func.isRequired
+  selectCustomerCallback: PropTypes.func
 };
 
 export default CustomerList;
