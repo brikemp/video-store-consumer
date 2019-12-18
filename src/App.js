@@ -50,27 +50,38 @@ onSelectMovie = (movieId) => {
 });
 }
 
+onSelectCustomer = (customerId) => {
+  axios.get("http://localhost:3000/customer") 
+    .then((response)=>{
+    let count = 1
+    const customerList = response.data.map((customer) => {
+      customer["id"] = count
+      count += 1
+      return customer
+    })
+
+    const selectedCustomer = customerList.find((customer) => {
+      return customer.id === customerId;
+    });
+    if (selectedCustomer) {
+      this.setState({ selectedCustomer});
+      console.log(selectedCustomer);
+      
+    };
+  });
+}
+
 
   render () {
     return (
       <div>
       <Router>
         <div>
-          <nav>
-            <ul>
-              <li>
+          <nav className="navbar">
                 <Link to="/">Home</Link>
-              </li>
-              <li>
                 <Link to="/search">Search</Link>
-              </li>
-              <li>
                 <Link to="/library">Library</Link>
-              </li>            
-              <li>
                 <Link to="/customers">Customers</Link>
-              </li>
-            </ul>
           </nav>
           <Switch>
             <Route path="/" exact component={Home} />
@@ -83,6 +94,7 @@ onSelectMovie = (movieId) => {
         
       </Router>
       <Library selectMovieCallback={this.onSelectMovie} />
+      <CustomerList selectCustomerCallback={this.onSelectCustomer} />
       </div>
     );
   }

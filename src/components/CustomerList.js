@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios'
 import './CustomerList.css';
 import Customer from './Customer'
@@ -30,6 +31,7 @@ class CustomerList extends Component {
       return (<Customer 
         id={customer.id}
         name={customer.name}
+        selectCustomerCallback={this.props.selectCustomerCallback}
       />)
     })
   }
@@ -42,5 +44,9 @@ class CustomerList extends Component {
   );
 }
 }
+
+CustomerList.propTypes = {
+  selectCustomerCallback: PropTypes.func.isRequired
+};
 
 export default CustomerList;
