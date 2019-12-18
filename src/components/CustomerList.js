@@ -36,7 +36,7 @@ class CustomerList extends Component {
 
   render () {
     return (
-    <div>
+    <div> <h2>Customer Names:</h2>
       {this.getCustomers()}
     </div>
   );
