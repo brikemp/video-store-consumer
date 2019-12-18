@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-
+import Movie from './Movie'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './SearchBar.css';
 
@@ -10,7 +10,7 @@ class SearchBar extends Component {
     super(props);
 
     this.state = {
-      query: '', 
+      title: '', 
       queryResults: [],
       error: '', 
       search_check: false, 
@@ -29,22 +29,30 @@ class SearchBar extends Component {
 
 
   searchMovies = (event) => {
-    console.log(event);
-    axios.get('http://localhost:3000/movies/', { params: { query: this.state.query } } )
-      .then(response => {
-        const movies = response.data.map(movie => {
+    event.preventDefault();
+
+    console.log("This is working 1");
+    // axios.get('http://localhost:3000/movies/', { params: { query: this.state.title } } )
+    // console.log(`http://localhost:3000/movies?query=${this.state.title}`)
+    axios.get(`http://localhost:3000/movies?query=${this.state.title}`)
+      .then((response) => {
+        const queryResults = response.data.map(movie => {
           return movie;
         });
-        this.setState({
-          queryResults: movies,
-          search_check: true
-        });
+        this.setState({queryResults});
       })
       .catch((error) => {
         this.setState({ error: "No movies found" })
       })
   };
 
+  makeMovies = () => {
+    return this.state.queryResults.map((movie) => {
+      return (<Movie
+        key={movie.id}
+        title={movie.title} />)
+    })
+  }
 
   render () {
     return (
@@ -52,25 +60,31 @@ class SearchBar extends Component {
         <form onSubmit={this.searchMovies}>
           <h3>Search for a Movie</h3>
           <div>
-            <label htmlFor="query">Movie Title:</label>
+            <label htmlFor="title">Movie Title:</label>
             <input
               type='text'
               onChange={this.onInputChange}
               value={this.state.query}
-              name="query"
-              id="query"
+              name="title"
+              id="title"
               className="search-bar"
             />
           </div>
           <button type="submit">Search</button>
         </form>
-        <div>
-          <h2>{this.state.searchCheck ? "Results" : '' }</h2>
-          {this.state.queryResults}
-        </div>
+          <div>
+            {this.makeMovies()}
+            {/* {this.state.error}
+            {this.state.title} */}
+          </div>
       </div>
     );
   }
 };
+
+SearchBar.propTypes = {
+    query: PropTypes.string, 
+};
+
 
 export default SearchBar;
