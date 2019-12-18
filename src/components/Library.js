@@ -27,6 +27,7 @@ class Library extends Component {
       return (<Movie 
         key={movie.id}
         title={movie.title}
+
       />)
     })
   }
@@ -34,6 +35,7 @@ class Library extends Component {
   render () {
     return (
     <div>
+      <h2>Movie Titles:</h2>
       {this.getMovies()}
     </div>
   );
