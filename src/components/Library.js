@@ -15,7 +15,10 @@ class Library extends Component {
   componentDidMount() { 
     axios.get("http://localhost:3000/movies") 
     .then((response)=>{
+    let count = 1
     const movieList = response.data.map((movie) => {
+      movie["id"] = count
+      count += 1
       return movie
     })
     this.setState({movieList})
@@ -25,7 +28,7 @@ class Library extends Component {
   getMovies = () => {
     return this.state.movieList.map((movie) => {
       return (<Movie 
-        key={movie.id}
+        id={movie.id}
         title={movie.title}
       />)
     })

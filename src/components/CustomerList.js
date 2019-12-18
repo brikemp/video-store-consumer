@@ -15,7 +15,10 @@ class CustomerList extends Component {
   componentDidMount() { 
     axios.get("http://localhost:3000/customers") 
     .then((response)=>{
+    let count = 1
     const customerList = response.data.map((customer) => {
+      customer["id"] = count
+      count += 1
       return customer
     })
     this.setState({customerList})
@@ -25,7 +28,7 @@ class CustomerList extends Component {
   getCustomers = () => {
     return this.state.customerList.map((customer) => {
       return (<Customer 
-        key={customer.id}
+        id={customer.id}
         name={customer.name}
       />)
     })
