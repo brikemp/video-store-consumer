@@ -5,10 +5,14 @@ import './Movie.css';
 const Movie = (props) => {
   const { id, title, movieCallback, buttonText, displayButton} = props;
   return (
-    <div>
-      {title}  
-      {displayButton === true ? <button onClick={() => { movieCallback(id) } }> {buttonText} </button> : " " }
-    </div>
+    <table className="table">
+      <tbody>
+        <td>{title} </td> 
+      
+      <td className="select-button">{displayButton === true ? <button onClick={() => { movieCallback(id) } }> {buttonText} </button> : " " } </td>
+
+      </tbody>
+    </table>
   );
 }
 

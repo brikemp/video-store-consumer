@@ -6,12 +6,13 @@ const Customer = (props) => {
   const { id, name, selectCustomerCallback, displayButton } = props;
   return (
     <table className="table">
-    
-      <tr>
+      <tbody>
+        
         <td>{name}</td>
-        {displayButton === true ? <button onClick={() => { selectCustomerCallback(id) }}>Select</button> : " "}
-      </tr>
+
+        <td className="select-button">{displayButton === true ? <button onClick={() => { selectCustomerCallback(id) }}>Select</button> : " "} </td>
       
+      </tbody>
     </table>
   );
 }

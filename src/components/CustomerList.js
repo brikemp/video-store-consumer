@@ -40,6 +40,7 @@ class CustomerList extends Component {
 
   render () {
     return (
+      
     <div className="customer-list"> <h2>Customer Names:</h2>
       {this.getCustomers()}
     </div>
