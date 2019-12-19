@@ -41,7 +41,12 @@
 }
 
 .nav-link {
-    margin-right: -30px;
+  margin-right: -30px;
+}
+
+.logo-size {
+  width: 30;
+  height: 30; 
 }
 
 @keyframes App-logo-spin {
