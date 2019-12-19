@@ -42,7 +42,7 @@ class Library extends Component {
 
   render () {
     return (
-    <div>
+    <div className="movie-list">
       <h2>Movie Titles:</h2>
       {this.getMovies()}
     </div>

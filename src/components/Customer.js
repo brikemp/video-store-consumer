@@ -5,10 +5,14 @@ import './Customer.css'
 const Customer = (props) => {
   const { id, name, selectCustomerCallback } = props;
   return (
-    <div>
-      {name}
-      <button onClick={() => { selectCustomerCallback(id) }}>Select</button>
-    </div>
+    <table className="table">
+    
+      <tr>
+        <td>{name}</td>
+      <td><button onClick={() => { selectCustomerCallback(id) }}>Select</button></td>
+      </tr>
+      
+    </table>
   );
 }
 
