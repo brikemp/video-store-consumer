@@ -32,6 +32,28 @@ class App extends Component {
   }
 
 
+checkout = () => {
+    const params = {
+      title: this.state.selectedMovie.title,
+      customer_id: this.state.selectedCustomer.id,
+      due_date: new Date(Date.now() + 700000000),    
+    };
+
+    URL = '';
+    axios.post('http://localhost:3000/rentals/' + this.state.selectedMovie.title.toString() + '/check-out', params)
+      .then(response => {
+        console.log("success");
+        this.setState({
+          selectedMovie: "",
+          selectedCustomer: "",
+        });
+      })
+      .catch(error => {
+        console.log(error.response);
+      });
+  };
+
+
 onSelectMovie = (movieId) => {
   axios.get("http://localhost:3000/movies") 
     .then((response)=>{
@@ -85,7 +107,7 @@ onSelectCustomer = (customerId) => {
           {this.state.selectedMovie === "" ? "" : <Movie title={this.state.selectedMovie.title} id={this.state.selectedMovie.id} />}
         </div>
         <div>
-          {this.state.selectedCustomer !== "" && this.state.selectedMovie !== "" ? <Rental movie={this.state.selectedMovie} customer={this.state.selectedCustomer}/> : ""}
+          {this.state.selectedCustomer !== "" && this.state.selectedMovie !== "" ? <Rental movie={this.state.selectedMovie} customer={this.state.selectedCustomer} rentalCallback={this.checkout}/> : ""}
         </div>
 
         <Router>
