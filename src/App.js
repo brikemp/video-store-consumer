@@ -17,7 +17,11 @@ import {
 
 
 function Home() {
-  return <h2>Home</h2>;
+  return (
+    <div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Blockbuster_logo.svg/2000px-Blockbuster_logo.svg.png" alt="Blockbuster logo" className="blockbuster"/>
+    </div>
+  );
 }
 
 class App extends Component {
