@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import './Movie.css';
 
 const Movie = (props) => {
-  const { id, title, movieCallback, buttonText} = props;
+  const { id, title, movieCallback, buttonText, displayButton} = props;
   return (
     <div>
-      {title}
-      
-      <button onClick={() => { movieCallback(id) } }> {buttonText} </button>
-          </div>
+      {title}  
+      {displayButton === true ? <button onClick={() => { movieCallback(id) } }> {buttonText} </button> : " " }
+    </div>
   );
 }
 

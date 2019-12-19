@@ -104,23 +104,29 @@ onSelectCustomer = (customerId) => {
   render () {
     return (
       <div>
-        <div>
-          {this.state.selectedCustomer === "" ? "" : <Customer name={this.state.selectedCustomer.name} id={this.state.selectedCustomer.id} />}
-        </div>
-        <div>
-          {this.state.selectedMovie === "" ? "" : <Movie title={this.state.selectedMovie.title} id={this.state.selectedMovie.id} />}
-        </div>
-        <div>
-          {this.state.selectedCustomer !== "" && this.state.selectedMovie !== "" ? <Rental movie={this.state.selectedMovie} customer={this.state.selectedCustomer} rentalCallback={this.checkout}/> : ""}
-        </div>
+        <section className="selected-items">
+          <div>
+            {this.state.selectedCustomer === "" ? "" : "Customer: " }
+            {this.state.selectedCustomer === "" ? "" : <Customer name={this.state.selectedCustomer.name} id={this.state.selectedCustomer.id} displayButton={false}/>}
+          </div>
+          <div>
+            {this.state.selectedMovie === "" ? "" : "Movie to Checkout: " }
+            {this.state.selectedMovie === "" ? "" : <Movie title={this.state.selectedMovie.title} id={this.state.selectedMovie.id} displayButton={false}/>}
+          </div>
+          <div>
+            {this.state.selectedCustomer !== "" && this.state.selectedMovie !== "" ? <Rental movie={this.state.selectedMovie} customer={this.state.selectedCustomer} rentalCallback={this.checkout}/> : ""}
+          </div>
+        </section>
 
         <Router>
           <div>
-            <nav className="navbar">
-                  <Link to="/">Home</Link>
-                  <Link to="/search">Search</Link>
-                  <Link to="/library">Library</Link>
-                  <Link to="/customers">Customers</Link>
+            <nav className="navbar navbar-width">
+                <a class="navbar-brand" href="/">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Blockbuster_logo.svg/2000px-Blockbuster_logo.svg.png" width="30" height="30" alt="blockbuster logo" />
+                </a>
+                <Link className="nav-link" to="/search">Search</Link>
+                <Link className="nav-link" to="/library">Library</Link>
+                <Link className="nav-link" to="/customers">Customers</Link>
             </nav>
             <Switch>
               <Route path="/" exact component={Home} />

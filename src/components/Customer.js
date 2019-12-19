@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import './Customer.css'
 
 const Customer = (props) => {
-  const { id, name, selectCustomerCallback } = props;
+  const { id, name, selectCustomerCallback, displayButton } = props;
   return (
     <div>
       {name}
-      <button onClick={() => { selectCustomerCallback(id) }}>Select</button>
+      {displayButton === true ? <button onClick={() => { selectCustomerCallback(id) }}>Select</button> : " "}
     </div>
   );
 }

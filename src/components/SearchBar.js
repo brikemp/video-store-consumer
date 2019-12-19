@@ -68,7 +68,8 @@ addMovie = (movieId) => {
       return (<Movie
         key={movie.external_id}
         id={movie.external_id}
-        title={movie.title} 
+        title={movie.title}
+        displayButton={true} 
         movieCallback={this.addMovie}
         buttonText={"Add"}
         />)
