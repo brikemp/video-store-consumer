@@ -31,6 +31,25 @@
   margin-right: auto;
 }
 
+.selected-items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.navbar-width {
+  width: 300px
+}
+
+.nav-link {
+  margin-right: -30px;
+}
+
+.logo-size {
+  width: 30;
+  height: 30; 
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

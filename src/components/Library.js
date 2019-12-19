@@ -31,6 +31,7 @@ class Library extends Component {
       return (<Movie 
         id={movie.id}
         title={movie.title}
+        displayButton={true}
         movieCallback={this.props.selectMovieCallback}
         buttonText={"Select"}
       />)

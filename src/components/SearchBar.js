@@ -68,7 +68,8 @@ addMovie = (movieId) => {
       return (<Movie
         key={movie.external_id}
         id={movie.external_id}
-        title={movie.title} 
+        title={movie.title}
+        displayButton={true} 
         movieCallback={this.addMovie}
         buttonText={"Add"}
         />)
@@ -79,9 +80,9 @@ addMovie = (movieId) => {
     return (
       <div>
         <form onSubmit={this.searchMovies}>
-          <h3>Search for a Movie</h3>
+          <h3>Search for a Movie: </h3>
           <div>
-            <label htmlFor="title">Movie Title:</label>
+            <label htmlFor="title"></label>
             <input
               type='text'
               onChange={this.onInputChange}
@@ -91,7 +92,9 @@ addMovie = (movieId) => {
               className="search-bar"
             />
           </div>
-          <button type="submit">Search</button>
+          <div className="submit-padding">
+            <button type="submit" >Search</button>
+          </div>
         </form>
 
           <div>

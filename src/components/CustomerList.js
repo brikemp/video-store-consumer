@@ -32,6 +32,7 @@ class CustomerList extends Component {
         key={customer.id}
         id={customer.id}
         name={customer.name}
+        displayButton={true}
         selectCustomerCallback={this.props.selectCustomerCallback}
       />)
     })
