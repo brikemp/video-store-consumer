@@ -6,6 +6,8 @@ import SearchBar from './components/SearchBar'
 import CustomerList from './components/CustomerList'
 import Customer from './components/Customer'
 import Library from './components/Library'
+import Rental from './components/Rental'
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -80,8 +82,10 @@ onSelectCustomer = (customerId) => {
           {this.state.selectedCustomer === "" ? "" : <Customer name={this.state.selectedCustomer.name} id={this.state.selectedCustomer.id} />}
         </div>
         <div>
-                    {this.state.selectedMovie === "" ? "" : <Movie title={this.state.selectedMovie.title} id={this.state.selectedMovie.id} />}
-
+          {this.state.selectedMovie === "" ? "" : <Movie title={this.state.selectedMovie.title} id={this.state.selectedMovie.id} />}
+        </div>
+        <div>
+          {this.state.selectedCustomer !== "" && this.state.selectedMovie !== "" ? <Rental movie={this.state.selectedMovie} customer={this.state.selectedCustomer}/> : ""}
         </div>
 
         <Router>
