@@ -4,6 +4,7 @@ import axios from 'axios'
 import Movie from './components/Movie'
 import SearchBar from './components/SearchBar'
 import CustomerList from './components/CustomerList'
+import Customer from './components/Customer'
 import Library from './components/Library'
 import {
   BrowserRouter as Router,
@@ -75,26 +76,34 @@ onSelectCustomer = (customerId) => {
   render () {
     return (
       <div>
-      <Router>
         <div>
-          <nav className="navbar">
-                <Link to="/">Home</Link>
-                <Link to="/search">Search</Link>
-                <Link to="/library">Library</Link>
-                <Link to="/customers">Customers</Link>
-          </nav>
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/search" component={SearchBar} />
-            <Route path="/library" 
-              render={(props) => <Library {...props} selectMovieCallback={this.onSelectMovie}/> } />
-
-            <Route path="/customers" 
-              render={(props) => <CustomerList {...props} selectCustomerCallback={this.onSelectCustomer} />} />
-          </Switch>
+          {this.state.selectedCustomer === "" ? "" : <Customer name={this.state.selectedCustomer.name} id={this.state.selectedCustomer.id} />}
         </div>
-        
-      </Router>
+        <div>
+                    {this.state.selectedMovie === "" ? "" : <Movie title={this.state.selectedMovie.title} id={this.state.selectedMovie.id} />}
+
+        </div>
+
+        <Router>
+          <div>
+            <nav className="navbar">
+                  <Link to="/">Home</Link>
+                  <Link to="/search">Search</Link>
+                  <Link to="/library">Library</Link>
+                  <Link to="/customers">Customers</Link>
+            </nav>
+            <Switch>
+              <Route path="/" exact component={Home} />
+              <Route path="/search" component={SearchBar} />
+              <Route path="/library" 
+                render={(props) => <Library {...props} selectMovieCallback={this.onSelectMovie}/> } />
+
+              <Route path="/customers" 
+                render={(props) => <CustomerList {...props} selectCustomerCallback={this.onSelectCustomer} />} />
+            </Switch>
+          </div>
+          
+        </Router>
 
       </div>
     );

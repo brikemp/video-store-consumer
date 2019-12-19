@@ -7,7 +7,7 @@ const Customer = (props) => {
   return (
     <div>
       {name}
-      <button onClick={() => { selectCustomerCallback(id) }}/>
+      <button onClick={() => { selectCustomerCallback(id) }}>Select</button>
     </div>
   );
 }

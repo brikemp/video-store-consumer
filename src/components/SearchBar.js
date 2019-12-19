@@ -14,6 +14,7 @@ class SearchBar extends Component {
       queryResults: [],
       error: '', 
       search_check: false, 
+      movieList: [], 
     }
   }
 
@@ -46,23 +47,21 @@ class SearchBar extends Component {
   };
 
 
-  addMovie = (id) => {
-    const movie = movieList.find((id) => {
-      return movie.id === movieId;
+addMovie = (movieId) => {
+
+
+    const foundMovie = this.state.queryResults.find((movie) => {
+      return movie.external_id === movieId;
     });
-    axios.post("http://localhost:3000/movies/", {
-      key: movie.id,
-      title: movie.title,
-      overview: movie.overview,
-      release_date: movie.release_date,
-      image_url: movie.image_url,
-      external_id: movie.external_id,
-      inventory: Math.floor((Math.random() * 100) + 1)
-    })
+
+    foundMovie["inventory"] = Math.floor((Math.random() * 100) + 1)
+    
+    axios.post("http://localhost:3000/movies/", foundMovie)
     .then((response) => {
       console.log("success")
     })
-  }
+
+}
 
   makeMovies = () => {
     return this.state.queryResults.map((movie) => {
@@ -70,7 +69,9 @@ class SearchBar extends Component {
         key={movie.external_id}
         id={movie.external_id}
         title={movie.title} 
-        addMovieCallback={this.addMovie}/>)
+        movieCallback={this.addMovie}
+        buttonText={"Add"}
+        />)
     })
   }
 
