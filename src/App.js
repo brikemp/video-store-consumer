@@ -45,14 +45,14 @@ checkout = () => {
 
     URL = '';
     axios.post('http://localhost:3000/rentals/' + this.state.selectedMovie.title.toString() + '/check-out', params)
-      .then(response => {
+      .then((response) => {
         console.log("success");
         this.setState({
           selectedMovie: "",
           selectedCustomer: "",
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error.response);
       });
   };
